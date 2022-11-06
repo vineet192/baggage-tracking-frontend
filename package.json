@@ -1,0 +1,19 @@
+{
+  "name": "baggage-tracking-frontend",
+  "version": "1.0.0",
+  "description": "Frontend interface for the a decentralized baggage tracking system.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/vineet192/baggage-tracking-frontend.git"
+  },
+  "author": "Vineet Kalghatgi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vineet192/baggage-tracking-frontend/issues"
+  },
+  "homepage": "https://github.com/vineet192/baggage-tracking-frontend#readme"
+}
