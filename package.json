@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/vineet192/baggage-tracking-frontend/issues"
   },
-  "homepage": "https://github.com/vineet192/baggage-tracking-frontend#readme"
+  "homepage": "https://github.com/vineet192/baggage-tracking-frontend#readme",
+  "dependencies": {
+    "ethers": "^5.7.2"
+  }
 }
