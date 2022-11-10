@@ -34,6 +34,7 @@ document.querySelector('form').addEventListener('submit', (event) => {
         .then((response) => response.json())
         .then((data) => {
             console.log('Success:', data.id);
+            window.location.href = app.hostUrl + "/customer.html"
         })
         .catch((error) => {
             console.error('Error:', error);
