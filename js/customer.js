@@ -1,27 +1,22 @@
 import app from './static/env.js'
 
-document.querySelector('form').addEventListener('submit', (event) => {
+let data = ["SkyBag", "Vip", "American tourister", "wildcraft"];
+
+let list = document.getElementById("myList");
+
+data.forEach((item) => {
+    let li = document.createElement("li");
+    li.innerText = item;
+    list.appendChild(li);
+    var trackButton = document.createElement("button");
+    trackButton.innerHTML = "Track";
+    var qrButton = document.createElement("button");
+    qrButton.innerHTML = "Show QR";
+    li.appendChild(trackButton);
+    li.appendChild(qrButton);
+});
+
+document.getElementById("addbaggage").addEventListener('click', (event) => {
     event.preventDefault()
-
-    const data = new FormData(event.target);
-
-    const value = Object.fromEntries(data.entries());
-
-    //console.log(value);
-
-    fetch(app.serverUrl + "/checkin_baggage", {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(value),
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log('Success:', data.id);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+    window.location.href = app.hostUrl + "/addBaggageForm.html"
 })
-
