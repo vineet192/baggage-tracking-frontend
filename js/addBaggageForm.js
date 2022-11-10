@@ -1,9 +1,15 @@
 import app from './static/env.js'
 
-var user = sessionStorage.getItem("creds");
+let user = sessionStorage.getItem("creds");
+let flight_number = sessionStorage.getItem("flight_no")
 console.log(user)
 
 let parsedData = JSON.parse(user)
+
+if (!flight_number) {
+    alert("Something went wrong!");
+    window.location.href = app.hostUrl + "enter_flight.html"
+}
 
 document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault()
@@ -12,13 +18,14 @@ document.querySelector('form').addEventListener('submit', (event) => {
 
     data.append("cust_name", parsedData.name)
     data.append("cust_email", parsedData.email)
+    data.append("flight", flight_number)
 
     const value = Object.fromEntries(data.entries());
 
     console.log(value);
 
     fetch(app.serverUrl + "/checkin_baggage", {
-        method: 'POST', 
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },

@@ -29,6 +29,6 @@ function store(){ //stores items in sessionStorage
 document.querySelector("form").addEventListener('submit', (event) => {
     event.preventDefault()
     store()
-    window.location.href = app.hostUrl + "/customer.html"
+    window.location.href = app.hostUrl + "/enter_flight.html"
 }) 
 
