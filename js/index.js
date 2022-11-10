@@ -163,13 +163,11 @@ let contract = new web3.eth.Contract([
 		"stateMutability": "view",
 		"type": "function"
 	}
-], "0xBE89BC93CDD81ffEEFF9b46e71391968AE4042b9")
+], "0x29B851d82aDb5E4363A938476f728d794DCC43ff")
 
 web3.eth.getAccounts().then(console.log)
 contract.methods.getCustomers().call().then(console.log)
 contract.methods.getBaggage().call().then(console.log)
-
-//contract.methods.checkInBaggage(["001"],["0000"]).call().then(console.log)
 
 async function connect() {
     if (typeof window.ethereum != undefined) {
@@ -189,19 +187,22 @@ async function getPersonAddress() {
 document.getElementById('connectbtn').addEventListener('click', async () => {
     await connect()
 
-    getPersonAddress().then(async (address) => {
+    getPersonAddress().then((address) => {
         console.log("got the address", address, typeof(address))
         contract.methods.getIsBoardingOfficial().call({from : address})
         .then(isOfficial => {
             console.log("IsOfficial : ", isOfficial)
     
             if(isOfficial){
-                window.location.href = app.serverUrl + "/src/boardingOfficial.html"
+                window.location.href = app.hostUrl + "/boardingOfficial.html"
             }
             else{
-                window.location.href = app.serverUrl + "/src/login.html"
+                window.location.href = app.hostUrl + "/login.html"
             }
         })
     })
 
 })
+
+
+
