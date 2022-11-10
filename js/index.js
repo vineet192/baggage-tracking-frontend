@@ -6,6 +6,17 @@ let contract = new web3.eth.Contract([
 	{
 		"inputs": [
 			{
+				"internalType": "string[]",
+				"name": "customer_ids",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "string",
 				"name": "baggageId",
 				"type": "string"
@@ -37,7 +48,7 @@ let contract = new web3.eth.Contract([
 				"type": "address[]"
 			}
 		],
-		"name": "assignBaggageOffcial",
+		"name": "assignBaggageOfficial",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -59,17 +70,6 @@ let contract = new web3.eth.Contract([
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string[]",
-				"name": "customer_ids",
-				"type": "string[]"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
 	},
 	{
 		"inputs": [],
@@ -152,7 +152,20 @@ let contract = new web3.eth.Contract([
 	},
 	{
 		"inputs": [],
-		"name": "getIsBoardingOfficial",
+		"name": "isBaggageOfficial",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "isBoardingOfficial",
 		"outputs": [
 			{
 				"internalType": "bool",
@@ -163,44 +176,44 @@ let contract = new web3.eth.Contract([
 		"stateMutability": "view",
 		"type": "function"
 	}
-], "0x29B851d82aDb5E4363A938476f728d794DCC43ff")
+], "0xD8c1782AB57Dde0354943114B526dEBBfcBd8ff7")
 
 web3.eth.getAccounts().then(console.log)
 contract.methods.getCustomers().call().then(console.log)
 contract.methods.getBaggage().call().then(console.log)
 
 async function connect() {
-    if (typeof window.ethereum != undefined) {
-        console.log("We can see Metamask Wallet")
-        let user = await ethereum.request({ method: "eth_requestAccounts" });
-        console.log(user)
-    }
+	if (typeof window.ethereum != undefined) {
+		console.log("We can see Metamask Wallet")
+		let user = await ethereum.request({ method: "eth_requestAccounts" });
+		console.log(user)
+	}
 }
 
 async function getPersonAddress() {
-    if (typeof window.ethereum != undefined) {
-        let user = await ethereum.request({ method: "eth_requestAccounts" });
-        return user[0]
-    }
+	if (typeof window.ethereum != undefined) {
+		let user = await ethereum.request({ method: "eth_requestAccounts" });
+		return user[0]
+	}
 }
 
 document.getElementById('connectbtn').addEventListener('click', async () => {
-    await connect()
+	await connect()
 
-    getPersonAddress().then((address) => {
-        console.log("got the address", address, typeof(address))
-        contract.methods.getIsBoardingOfficial().call({from : address})
-        .then(isOfficial => {
-            console.log("IsOfficial : ", isOfficial)
-    
-            if(isOfficial){
-                window.location.href = app.hostUrl + "/boardingOfficial.html"
-            }
-            else{
-                window.location.href = app.hostUrl + "/login.html"
-            }
-        })
-    })
+	getPersonAddress().then((address) => {
+		console.log("got the address", address, typeof (address))
+		contract.methods.isBoardingOfficial().call({ from: address })
+			.then(isOfficial => {
+				console.log("IsOfficial : ", isOfficial)
+
+				if (isOfficial) {
+					window.location.href = app.hostUrl + "/boardingOfficial.html"
+				}
+				else {
+					window.location.href = app.hostUrl + "/login.html"
+				}
+			})
+	})
 
 })
 
