@@ -20,6 +20,11 @@ let contract = new web3.eth.Contract([
 				"internalType": "string",
 				"name": "baggageId",
 				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "location",
+				"type": "string"
 			}
 		],
 		"name": "addBaggageToBoarding",
@@ -32,6 +37,11 @@ let contract = new web3.eth.Contract([
 			{
 				"internalType": "string",
 				"name": "baggageId",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "location",
 				"type": "string"
 			}
 		],
@@ -91,6 +101,16 @@ let contract = new web3.eth.Contract([
 						"internalType": "string",
 						"name": "location",
 						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "locationHistory",
+						"type": "string[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "timestampHistory",
+						"type": "uint256[]"
 					},
 					{
 						"internalType": "enum BaggageTracker.BaggageStatus",
