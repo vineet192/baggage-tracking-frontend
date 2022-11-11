@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/vineet192/baggage-tracking-frontend#readme",
   "dependencies": {
-    "ethers": "^5.7.2"
+    "ethers": "^5.7.2",
+    "qr-scanner": "^1.4.1"
   }
 }
