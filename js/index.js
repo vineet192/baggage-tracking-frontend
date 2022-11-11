@@ -196,7 +196,7 @@ let contract = new web3.eth.Contract([
 		"stateMutability": "view",
 		"type": "function"
 	}
-], "0xD8c1782AB57Dde0354943114B526dEBBfcBd8ff7")
+], "0xfaBC3C022FeA1d4bb4E89567c6b5aC0E8E7379B0")
 
 web3.eth.getAccounts().then(console.log)
 contract.methods.getCustomers().call().then(console.log)
@@ -219,21 +219,42 @@ async function getPersonAddress() {
 
 document.getElementById('connectbtn').addEventListener('click', async () => {
 	await connect()
+	let isBoardingOfficial;
+	let isBaggageOfficial;
+	let address;
 
-	getPersonAddress().then((address) => {
-		console.log("got the address", address, typeof (address))
-		contract.methods.isBoardingOfficial().call({ from: address })
-			.then(isOfficial => {
-				console.log("IsOfficial : ", isOfficial)
+	try {
+		address = await getPersonAddress()
+	} catch (err) {
+		console.error(err);
+		alert('Something went wrong fetching your address!')
+		return
+	}
+	console.log("got the address", address, typeof (address))
 
-				if (isOfficial) {
-					window.location.href = app.hostUrl + "/boardingOfficial.html"
-				}
-				else {
-					window.location.href = app.hostUrl + "/login.html"
-				}
-			})
-	})
+	try {
+		isBoardingOfficial = await contract.methods.isBoardingOfficial().call({ from: address })
+	} catch (err) {
+		console.error(err)
+	}
+
+	if (isBoardingOfficial) {
+		window.location.href = app.hostUrl + '/boardingOfficial.html'
+	}
+
+	try {
+		isBaggageOfficial = await contract.methods.isBaggageOfficial().call({ from: address })
+	} catch (err) {
+		console.error(err)
+	}
+
+	if(isBaggageOfficial){
+		window.location.href = app.hostUrl + '/baggageOfficial.html'
+	}
+	else{
+		window.location.href = app.hostUrl + '/login.html'
+	}
+
 
 })
 
