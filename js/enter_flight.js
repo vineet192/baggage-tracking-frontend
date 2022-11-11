@@ -8,6 +8,7 @@ document.querySelector("form").addEventListener("submit", async (event) => {
     let isFlightVerified = await verify_flight(flight_no)
 
     if (!isFlightVerified) {
+        alert("We could not verify that flight number")
         return;
     }
 
@@ -19,12 +20,17 @@ document.querySelector("form").addEventListener("submit", async (event) => {
 async function verify_flight(flight_no) {
     let response;
 
-    response = await fetch(app.serverUrl + `/verify_flight?flight_no=${flight_no}`)
+    try {
+        response = await fetch(app.serverUrl + `/verify_flight?flight_no=${flight_no}`)
+    } catch (err) {
+        console.error(err);
+        return false
+    }
 
-    if(response.status === 200){
+    if (response.status === 200) {
         return true
     }
 
-    return true
+    return false
 
 }
