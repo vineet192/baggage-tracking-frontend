@@ -6,7 +6,7 @@ const qrScanner = new QrScanner(videoElem, result => {
     
     console.log('decoded qr code:', result) 
 
-    sessionStorage.setItem("scanned-baggage-id", result)
+    sessionStorage.setItem("scanned-baggage-id", result.trim())
 
     window.location.href = app.hostUrl + "/scanBaggage.html"
 
