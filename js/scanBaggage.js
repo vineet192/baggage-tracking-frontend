@@ -5,6 +5,9 @@ const web3 = new Web3(app.smartContractUrl)
 let contract = new web3.eth.Contract(smartContract.abi, smartContract.address)
 var bagStatus = document.getElementById("status");
 
+let address = await getPersonAddress()
+console.log(address)
+
 function onChange() {
     var value = bagStatus.value;
     console.log(value);
@@ -26,7 +29,7 @@ document.getElementById("scannedBaggage").addEventListener("click", async (event
         
         if (position) {
             console.log("call to sc")
-            contract.methods.checkInBaggage(baggageID, position).send({ from: "0x6286413Bf4dc570e7F0975A0644697c2E5601725", gas: 500000, gasLimit: 8000000 })
+            contract.methods.checkInBaggage(baggageID, position).send({ from: address, gas: 500000, gasLimit: 8000000 })
         }
     }
     else if (bagStatus.value === "security") {
@@ -35,7 +38,7 @@ document.getElementById("scannedBaggage").addEventListener("click", async (event
 
         if (position){
             console.log("call to sc")
-            contract.methods.addBaggageToSecurity(baggageID, position).send({ from: "0x6286413Bf4dc570e7F0975A0644697c2E5601725", gas: 500000, gasLimit: 8000000 })
+            contract.methods.addBaggageToSecurity(baggageID, position).send({ from: address, gas: 500000, gasLimit: 8000000 })
         }
     }
 
@@ -44,7 +47,7 @@ document.getElementById("scannedBaggage").addEventListener("click", async (event
 
         if (position){
             console.log("call to sc")
-            contract.methods.addBaggageToBoarding(baggageID, position).send({ from: "0x6286413Bf4dc570e7F0975A0644697c2E5601725", gas: 500000, gasLimit: 8000000 })
+            contract.methods.addBaggageToBoarding(baggageID, position).send({ from: address, gas: 500000, gasLimit: 8000000 })
         }
     }
 })
@@ -57,9 +60,15 @@ function getLocation() {
                 error => reject(error)
             )
         })
-
     } else {
         console.log("Geolocation is not supported by this browser.");
         return null;
+    }
+}
+
+async function getPersonAddress() {
+    if (typeof window.ethereum != undefined) {
+        let user = await ethereum.request({ method: "eth_requestAccounts" });
+        return user[0]
     }
 }
