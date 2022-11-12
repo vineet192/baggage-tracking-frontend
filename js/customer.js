@@ -12,9 +12,15 @@ data.forEach((item) => {
     let li = document.createElement("li");
     li.innerText = item.name;
     list.appendChild(li);
-    var trackButton = document.createElement("button");
+    let trackButton = document.createElement("button");
     trackButton.innerHTML = "Track";
-    var qrButton = document.createElement("button");
+
+    trackButton.addEventListener('click', (event) => {
+        sessionStorage.setItem('baggage_to_track', item.baggage_id)
+        window.location.href = app.hostUrl + '/trackBaggage.html'
+    })
+
+    let qrButton = document.createElement("button");
     qrButton.innerHTML = "Show QR";
     li.appendChild(trackButton);
     li.appendChild(qrButton);

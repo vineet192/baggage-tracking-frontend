@@ -6,7 +6,6 @@ let contract = new web3.eth.Contract(smartContract.abi, smartContract.address)
 
 web3.eth.getAccounts().then(console.log)
 contract.methods.getCustomers().call().then(console.log)
-contract.methods.getBaggage().call().then(console.log)
 
 async function connect() {
 	if (typeof window.ethereum != undefined) {
