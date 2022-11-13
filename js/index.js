@@ -5,7 +5,6 @@ const web3 = new Web3(app.smartContractUrl)
 let contract = new web3.eth.Contract(smartContract.abi, smartContract.address)
 
 web3.eth.getAccounts().then(console.log)
-contract.methods.getCustomers().call().then(console.log)
 
 async function connect() {
 	if (typeof window.ethereum != undefined) {
@@ -26,7 +25,9 @@ document.getElementById('connectbtn').addEventListener('click', async () => {
 	await connect()
 	let isBoardingOfficial;
 	let isBaggageOfficial;
+	let isCustomer;
 	let address;
+	let customerId;
 
 	try {
 		address = await getPersonAddress()
@@ -53,13 +54,44 @@ document.getElementById('connectbtn').addEventListener('click', async () => {
 		console.error(err)
 	}
 
-	if(isBaggageOfficial){
+	try {
+		isCustomer = await contract.methods.isCustomer().call({ from: address })
+	} catch (err) {
+		console.log(err)
+	}
+
+	if (isBaggageOfficial) {
 		window.location.href = app.hostUrl + '/baggageOfficial.html'
 	}
-	else{
+	else if (isCustomer) {
+		console.log("It's a customer")
+		try {
+			customerId = await contract.methods.getCustomerId().call({ from: address })
+			let customerData = await getCustomer(customerId)
+			console.log(customerData)
+			sessionStorage.setItem("email", customerData.email)
+			sessionStorage.setItem("name", customerData.name)
+			window.location.href = app.hostUrl + '/enter_flight.html'
+
+		} catch (err) {
+			console.log(err)
+		}
+	}
+	else {
 		window.location.href = app.hostUrl + '/login.html'
 	}
 })
+
+async function getCustomer(id) {
+	let custData;
+	try {
+		let response = await fetch(app.serverUrl + `/get_customer?id=${id}`)
+		custData = await response.json()
+	} catch (err) {
+		console.log(err)
+	}
+	return custData
+}
 
 
 

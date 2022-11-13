@@ -4,12 +4,10 @@ function store(){
     //stores items in sessionStorage
     var name = document.getElementById('uname').value;
     var email = document.getElementById('email').value;
-    var password = document.getElementById('psw').value;
 
     const creds = {
         name: name,
-        email: email,
-        password: password,
+        email: email
     }
 
     //converting object to string
