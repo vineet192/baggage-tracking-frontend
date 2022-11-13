@@ -1,10 +1,9 @@
 import app from './static/env.js'
 
-let user = sessionStorage.getItem("creds");
+let user = sessionStorage.getItem("email");
 let flight_number = sessionStorage.getItem("flight_no")
 console.log(user)
 
-let parsedData = JSON.parse(user)
 
 if (!flight_number) {
     alert("Something went wrong!");
@@ -16,8 +15,8 @@ document.querySelector('form').addEventListener('submit', (event) => {
 
     const data = new FormData(event.target);
 
-    data.append("cust_name", parsedData.name)
-    data.append("cust_email", parsedData.email)
+    data.append("cust_name", sessionStorage.getItem("name"))
+    data.append("cust_email", user)
     data.append("flight", flight_number)
 
     const value = Object.fromEntries(data.entries());

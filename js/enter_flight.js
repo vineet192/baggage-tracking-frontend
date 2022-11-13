@@ -14,7 +14,13 @@ document.querySelector("form").addEventListener("submit", async (event) => {
 
     sessionStorage.setItem("flight_no", flight_no);
 
-    window.location.href = app.hostUrl + "/customer.html"
+    if (sessionStorage.getItem("email")){
+        window.location.href = app.hostUrl + "/customer.html"
+    }
+    else{
+        window.location.href = app.hostUrl + "/register.html"
+    }
+
 })
 
 async function verify_flight(flight_no) {

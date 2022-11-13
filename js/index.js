@@ -78,7 +78,7 @@ document.getElementById('connectbtn').addEventListener('click', async () => {
 		}
 	}
 	else {
-		window.location.href = app.hostUrl + '/login.html'
+		window.location.href = app.hostUrl + '/enter_flight.html'
 	}
 })
 

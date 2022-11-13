@@ -5,17 +5,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Boarding Official</title>
     <script type="module" src="./js/boardingOfficial.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+        }
+
+        .mid-center {
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+    </style>
+
 </head>
 
 <body>
-    <h1>BOARDING OFFICIAL</h1>
-    <div class="container">
-        <label for="baggageOfficialAddress"><b>Enter Baggage Officals Addresses</b></label>
-        <input type="text" placeholder="Enter the 160 bit address" id="boadd" name="boadd" required>
-        <button type="submit" id="submitAddress">Submit</button>
+
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand align-center" href="./index.html">Baggage Tracking App</a>
+        </div>
+    </nav>
+
+    <div class="position-absolute mid-center">
+        <div class="card p-3">
+            <div class="card-body text-center">
+                <h5 class="card-title md-2">Assign a Baggage Official</h5>
+                <div class="input-group flex-nowrap m-2">
+                    <span class="input-group-text" id="addon-wrapping">Enter the 160 bit address</span>
+                    <input type="text" class="form-control" aria-label="Address" name="boadd" , id="boadd">
+                </div>
+                <button type="submit" id="submitAddress" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
     </div>
 </body>
 
