@@ -28,7 +28,7 @@ document.getElementById("scannedBaggage").addEventListener("click", async (event
         console.log("yes, this is checkin")
         
         if (position) {
-            console.log("call to sc")
+            console.log("call to checkin smart contract")
             contract.methods.checkInBaggage(baggageID, position).send({ from: address, gas: 500000, gasLimit: 8000000 })
         }
     }
@@ -37,17 +37,34 @@ document.getElementById("scannedBaggage").addEventListener("click", async (event
         console.log("yes, this is security")
 
         if (position){
-            console.log("call to sc")
+            console.log("call to security smart contract")
             contract.methods.addBaggageToSecurity(baggageID, position).send({ from: address, gas: 500000, gasLimit: 8000000 })
         }
     }
 
     else if (bagStatus.value === "boarded") {
-        console.log("yes, this is boaridng")
+        console.log("yes, this is boarding")
 
         if (position){
-            console.log("call to sc")
+            console.log("call to boarding smart contract")
             contract.methods.addBaggageToBoarding(baggageID, position).send({ from: address, gas: 500000, gasLimit: 8000000 })
+        }
+    }
+
+    else if (bagStatus.value === "onroute") {
+        console.log("yes, this is onroute")
+
+        if (position){
+            console.log("call to onboard smart contract")
+            contract.methods.addBaggageToOnRoute(baggageID, position).send({ from: address, gas: 500000, gasLimit: 8000000 })
+        }
+    }
+    else if (bagStatus.value === "delayed") {
+        console.log("yes, this is delayed")
+
+        if (position){
+            console.log("call to delayed smart contract")
+            contract.methods.addBaggageToDelayed(baggageID, position).send({ from: address, gas: 500000, gasLimit: 8000000 })
         }
     }
 })
