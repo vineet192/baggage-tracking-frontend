@@ -5,14 +5,13 @@ const web3 = new Web3(app.smartContractUrl)
 let contract = new web3.eth.Contract(smartContract.abi, smartContract.address)
 
 async function registerCustomer() {
-    //stores items in sessionStorage
+    //get the name and email from input text field
     var name = document.getElementById('uname').value;
     var email = document.getElementById('email').value;
 
     //Add the customer to the flight.
     let flight_no = sessionStorage.getItem("flight_no")
-
-
+    
     let customer_id = await addCustomer(name, email, flight_no)
 
     if (!customer_id) {

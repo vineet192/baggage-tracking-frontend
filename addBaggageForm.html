@@ -1,19 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Baggage Form</title>
-    <script type = "module" src = "./js/addBaggageForm.js"></script>
+    <script type="module" src="./js/addBaggageForm.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+        }
+
+        .mid-center {
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Add Baggage Form</h1>
-    <form>
-        Bag: <input type="text" name="bag"><br>
-        Bag Color: <input type="text" name="bcolor"><br>
-        Bag Weight: <input type="text" name="bweight"><br>
-       <button type="submit" id="checkin">Send to backend</button>
-    </form>
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand align-center" href="./index.html">Baggage Tracking App</a>
+        </div>
+    </nav>
+
+    <div class="position-absolute mid-center">
+        <form>
+            <div class="card p-3" style="width: 30rem;">
+
+                <div class="card-body text-center">
+                    <h4 class="card-title">Add Baggage Form</h4>
+                    <div class="input-group flex-nowrap m-2">
+                        <span class="input-group-text" id="addon-wrapping">Bag</span>
+                        <input type="text" class="form-control" aria-label="Bag" name="bag" , id="bag">
+                    </div>
+
+                    <div class="input-group flex-nowrap m-2">
+                        <span class="input-group-text" id="addon-wrapping">Bag Color</span>
+                        <input type="text" class="form-control" aria-label="Bag Color" name="bcolor" , id="bagcolor">
+                    </div>
+                    
+                    <div class="input-group flex-nowrap m-2">
+                        <span class="input-group-text" id="addon-wrapping">Bag Weight</span>
+                        <input type="text" class="form-control" aria-label="Bag Weight" name="bweight" , id="bagweight">
+                    </div>
+
+                    <button type="submit" id="checkin" class="btn btn-primary">Add Bag</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
+
 </html>
