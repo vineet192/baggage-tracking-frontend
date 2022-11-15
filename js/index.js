@@ -38,6 +38,7 @@ document.getElementById('connectbtn').addEventListener('click', async () => {
 	}
 	console.log("got the address", address, typeof (address))
 
+	//Query smart contract to check whether current user is a boarding official
 	try {
 		isBoardingOfficial = await contract.methods.isBoardingOfficial().call({ from: address })
 	} catch (err) {
@@ -48,12 +49,14 @@ document.getElementById('connectbtn').addEventListener('click', async () => {
 		window.location.href = app.hostUrl + '/boardingOfficial.html'
 	}
 
+	//Query smart contract to check whether current user is a baggage official
 	try {
 		isBaggageOfficial = await contract.methods.isBaggageOfficial().call({ from: address })
 	} catch (err) {
 		console.error(err)
 	}
 
+	//Query the smart contract to check whether the current user is registered as a customer
 	try {
 		isCustomer = await contract.methods.isCustomer().call({ from: address })
 	} catch (err) {

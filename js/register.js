@@ -24,6 +24,7 @@ async function registerCustomer() {
 
     let address = await getPersonAddress()
 
+    //Make a function call to the smart contract to add a new customer
     let result = await contract.methods.addCustomer(customer_id).send({ from: address, gas: 500000, gasLimit: 8000000 })
 
     console.log(result)
@@ -37,6 +38,7 @@ document.querySelector("form").addEventListener('submit', async (event) => {
     window.location.href = app.hostUrl + "/customer.html"
 })
 
+//Make a POST request to the server to add a new customer to the specified flight
 async function addCustomer(name, email, flight_no) {
 
     let data = {

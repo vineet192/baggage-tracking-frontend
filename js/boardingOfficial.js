@@ -7,6 +7,7 @@ let contract = new web3.eth.Contract(smartContract.abi, smartContract.address)
 let boAddressArray = []
 web3.eth.getAccounts().then(console.log)
 
+//Make a function call to the smart contract to assign the specified address as a "baggage official"
 document.getElementById("submitAddress").addEventListener('click', async (event) => {
     event.preventDefault()
     var boAddress = document.getElementById('boadd').value;

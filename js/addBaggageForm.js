@@ -2,7 +2,6 @@ import app from './static/env.js'
 
 let user = sessionStorage.getItem("email");
 let flight_number = sessionStorage.getItem("flight_no")
-console.log(user)
 
 
 if (!flight_number) {
@@ -10,6 +9,7 @@ if (!flight_number) {
     window.location.href = app.hostUrl + "enter_flight.html"
 }
 
+//Make a POST request to the server to add the baggage to the customer
 document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault()
 

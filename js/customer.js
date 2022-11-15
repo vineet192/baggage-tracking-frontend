@@ -1,8 +1,8 @@
 import app from './static/env.js'
 
 let email = sessionStorage.getItem("email")
-console.log(email)
 let flight_no = sessionStorage.getItem("flight_no")
+
 //return json of the baggage array
 let data = await getCustomerBaggage(email, flight_no)
 
