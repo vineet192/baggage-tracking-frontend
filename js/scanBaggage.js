@@ -26,18 +26,16 @@ document.querySelector("form").addEventListener("submit", async (event) => {
     console.log(baggageID, position)
 
     if (bagStatus.value === "checkin") {
-        //Smart contract call to checkInBaggage
-        console.log("yes, this is checkin")
 
+        //Smart contract call to checkInBaggage
         if (position) {
             console.log("call to checkin smart contract")
             await contract.methods.checkInBaggage(baggageID, position).send({ from: address, gas: 500000, gasLimit: 8000000 })
         }
     }
     else if (bagStatus.value === "security") {
-        //Smart contract call to addBaggageToSecurity
-        console.log("yes, this is security")
 
+        //Smart contract call to addBaggageToSecurity
         if (position) {
             console.log("call to security smart contract")
             await contract.methods.addBaggageToSecurity(baggageID, position).send({ from: address, gas: 500000, gasLimit: 8000000 })
@@ -45,8 +43,8 @@ document.querySelector("form").addEventListener("submit", async (event) => {
     }
 
     else if (bagStatus.value === "boarded") {
-        console.log("yes, this is boarding")
 
+        //Smart contract call to addBaggageToBoarding
         if (position) {
             console.log("call to boarding smart contract")
             await contract.methods.addBaggageToBoarding(baggageID, position).send({ from: address, gas: 500000, gasLimit: 8000000 })
@@ -56,14 +54,16 @@ document.querySelector("form").addEventListener("submit", async (event) => {
     else if (bagStatus.value === "onroute") {
         console.log("yes, this is onroute")
 
+        //Smart contract call to addBaggageToOnRoute
         if (position) {
             console.log("call to onboard smart contract")
             await contract.methods.addBaggageToOnRoute(baggageID, position).send({ from: address, gas: 500000, gasLimit: 8000000 })
         }
     }
     else if (bagStatus.value === "delayed") {
-        console.log("yes, this is delayed")
 
+
+        //Smart contract call to addBaggageToDelayed
         if (position) {
             console.log("call to delayed smart contract")
             await contract.methods.addBaggageToDelayed(baggageID, position).send({ from: address, gas: 500000, gasLimit: 8000000 })
@@ -73,6 +73,7 @@ document.querySelector("form").addEventListener("submit", async (event) => {
     window.location.href = app.hostUrl + '/baggageOfficial.html'
 })
 
+//Use the geolocation api to get the user's current address
 function getLocation() {
     if (navigator.geolocation) {
         return new Promise((resolve, reject) => {

@@ -23,6 +23,7 @@ document.querySelector("form").addEventListener("submit", async (event) => {
 
 })
 
+//Make a GET request to the server to verify the specified flight number
 async function verify_flight(flight_no) {
     let response;
 

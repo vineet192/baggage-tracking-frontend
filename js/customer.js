@@ -6,6 +6,7 @@ let name = sessionStorage.getItem("name")
 document.getElementById("header").innerText = `${name}'s Baggage Information`
 
 let flight_no = sessionStorage.getItem("flight_no")
+
 //return json of the baggage array
 let data = await getCustomerBaggage(email, flight_no)
 
