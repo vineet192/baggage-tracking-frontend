@@ -1,7 +1,10 @@
 import app from './static/env.js'
 
 let email = sessionStorage.getItem("email")
-console.log(email)
+let name = sessionStorage.getItem("name")
+
+document.getElementById("header").innerText = `${name}'s Baggage Information`
+
 let flight_no = sessionStorage.getItem("flight_no")
 //return json of the baggage array
 let data = await getCustomerBaggage(email, flight_no)
@@ -11,13 +14,13 @@ let list = document.getElementById("myList");
 //iterate through every bag in the baggage array 
 data.forEach((item) => {
     let li = document.createElement("li");
-    li.className = "list-group-item";
+    li.className = "list-group-item p-3";
     li.innerText = item.name;
     list.appendChild(li);
 
     //Track Button
     let trackButton = document.createElement("button");
-    trackButton.className = "btn btn-success"
+    trackButton.className = "btn btn-success m-2"
     trackButton.innerHTML = "Track";
 
     trackButton.addEventListener('click', (event) => {
@@ -27,7 +30,7 @@ data.forEach((item) => {
 
     //Show QR button
     let qrButton = document.createElement("button");
-    qrButton.className = "btn btn-warning"
+    qrButton.className = "btn btn-warning m-2"
     qrButton.innerHTML = "Show QR";
 
     qrButton.addEventListener('click', (event) => {

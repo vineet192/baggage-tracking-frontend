@@ -55,6 +55,17 @@ document.getElementById("refresh").addEventListener("click", async (event) => {
     }
 })
 
+document.getElementById("reward").addEventListener("click", async (event) => {
+    console.log("clicked reward")
+    let rewardAmount = 10
+    try {
+        console.log("call to reward smart contract")
+        await contract.methods.reward(rewardAmount).send({from: address, gas: 500000, gasLimit: 8000000})
+    } catch (err) {
+        console.error(err)
+    }
+})
+
 async function getPersonAddress() {
     if (typeof window.ethereum != undefined) {
         let user = await ethereum.request({ method: "eth_requestAccounts" });
