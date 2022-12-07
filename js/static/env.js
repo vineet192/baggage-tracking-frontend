@@ -1,5 +1,5 @@
 var app = {
-    hostUrl : 'http://127.0.0.1:5500',
+    hostUrl : 'https://vineet192.github.io/baggage-tracking-frontend/',
     serverUrl: "https://baggage-tracking-backend.herokuapp.com"
 }
 
