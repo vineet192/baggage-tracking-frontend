@@ -4,6 +4,8 @@ import smartContract from './static/smartContractEnv.js'
 const web3 = new Web3(app.smartContractUrl)
 let contract = new web3.eth.Contract(smartContract.abi, smartContract.address)
 
+sessionStorage.clear()
+
 web3.eth.getAccounts().then(console.log)
 
 async function connect() {
