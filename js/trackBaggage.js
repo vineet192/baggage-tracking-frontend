@@ -1,7 +1,7 @@
 import app from './static/env.js'
 import smartContract from './static/smartContractEnv.js'
 
-const web3 = new Web3(app.smartContractUrl)
+const web3 = new Web3(Web3.givenProvider)
 const apiKey = "8398a0ad172442bf92056b57430d2463"
 let contract = new web3.eth.Contract(smartContract.abi, smartContract.address)
 

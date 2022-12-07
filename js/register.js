@@ -1,7 +1,7 @@
 import app from './static/env.js'
 import smartContract from './static/smartContractEnv.js';
 
-const web3 = new Web3(app.smartContractUrl)
+const web3 = new Web3(Web3.givenProvider)
 let contract = new web3.eth.Contract(smartContract.abi, smartContract.address)
 
 async function registerCustomer() {
