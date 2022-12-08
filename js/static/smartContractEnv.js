@@ -540,7 +540,7 @@ var smartContract = {
             "type": "function"
         }
     ],
-    address: "0x3bdb1f9c18FF27863b865BC7FB5657e80E3981F1"
+    address: "0x317fB4dAe8e37B64505F9e0C0571aec15FD1A65B"
 }
 
 export default smartContract
