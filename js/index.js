@@ -78,6 +78,8 @@ document.getElementById('connectbtn').addEventListener('click', async () => {
 
 		} catch (err) {
 			console.log(err)
+			alert("Something went wrong fetching your data, please register again")
+			window.location.href = app.hostUrl + '/enter_flight.html'
 		}
 	}
 	else {
