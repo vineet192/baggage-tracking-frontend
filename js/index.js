@@ -4,8 +4,6 @@ import smartContract from './static/smartContractEnv.js'
 const web3 = new Web3(Web3.givenProvider)
 let contract = new web3.eth.Contract(smartContract.abi, smartContract.address)
 
-sessionStorage.clear()
-
 web3.eth.getAccounts().then(console.log)
 
 async function connect() {
@@ -85,28 +83,6 @@ document.getElementById('connectbtn').addEventListener('click', async () => {
 	else {
 		window.location.href = app.hostUrl + '/enter_flight.html'
 	}
-})
-
-document.getElementById('balancebtn').addEventListener('click', async () => {
-	let balance = ""
-	let address;
-
-	try {
-		address = await getPersonAddress()
-	} catch (err) {
-		console.error(err);
-		alert('Something went wrong fetching your address!')
-		return
-	}
-	console.log("got the address", address, typeof (address))
-
-	try {
-		balance = await contract.methods.getBalance().call({ from: address })
-	} catch (err) {
-		console.error(err)
-	}
-
-	document.getElementById("balance").innerText = `BGLY Balance:${balance}`
 })
 
 

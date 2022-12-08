@@ -15,6 +15,28 @@ document.getElementById("submitAddress").addEventListener('click', async (event)
     contract.methods.assignBaggageOfficial([boAddress]).send({ from: address, gas: 500000, gasLimit: 8000000 }).then(console.log)
 })
 
+document.getElementById('balancebtn').addEventListener('click', async () => {
+	let balance = ""
+	let address;
+
+	try {
+		address = await getPersonAddress()
+	} catch (err) {
+		console.error(err);
+		alert('Something went wrong fetching your address!')
+		return
+	}
+	console.log("got the address", address, typeof (address))
+
+	try {
+		balance = await contract.methods.getBalance().call({ from: address })
+	} catch (err) {
+		console.error(err)
+	}
+
+	document.getElementById("balance").innerText = `BGLY Balance:${balance}`
+})
+
 async function getPersonAddress() {
     if (typeof window.ethereum != undefined) {
         let user = await ethereum.request({ method: "eth_requestAccounts" });

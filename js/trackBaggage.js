@@ -18,6 +18,8 @@ document.getElementById("refresh").addEventListener("click", async (event) => {
         console.error(err)
     }
 
+    console.log(baggage)
+
     //Convert timestamps to string dates
     let timestampHistory = baggage.timestampHistory.map(time => (new Date(parseInt(time) * 1000)).toString())
 
