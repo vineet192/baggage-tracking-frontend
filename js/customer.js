@@ -1,4 +1,8 @@
 import app from './static/env.js'
+import smartContract from './static/smartContractEnv.js'
+
+const web3 = new Web3(Web3.givenProvider)
+let contract = new web3.eth.Contract(smartContract.abi, smartContract.address)
 
 let email = sessionStorage.getItem("email")
 let name = sessionStorage.getItem("name")
@@ -75,4 +79,11 @@ async function getCustomerBaggage(email, flight_no) {
     let response = await fetch(app.serverUrl + `/get_baggage?email=${email}&flight_no=${flight_no}`)
     let data = await response.json()
     return data
+}
+
+async function getPersonAddress() {
+    if (typeof window.ethereum != undefined) {
+        let user = await ethereum.request({ method: "eth_requestAccounts" });
+        return user[0]
+    }
 }
